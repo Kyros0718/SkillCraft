@@ -16,17 +16,27 @@ body {
 /*PAGE TITLE*/
 #page-title {
     font-size: 175%;
+    font-weight: bolder;
+    
 }
 #page-title h1::first-letter {
-    color:red;
+    color:blue;
 }
 #page-title h1 span {
-    color:yellow;
+    color:blue;
 }
 
-
+#subject2 {
+    display: none;    
+}
+#subject3 {
+    display: none;    
+}
+/*SEARCH BAR*/
 .input-container {
     display: flex;
+    
+    
 }
 /*INPUT BOX*/
 .input-box {
@@ -37,6 +47,7 @@ body {
     padding-bottom: 15px;
     padding-right: 125px;
     font-size: 16px;
+    font-weight: bolder;
 }
 /*SUBMIT BUTTON*/
 .submit-button {
@@ -45,6 +56,7 @@ body {
     margin-top: 5px;
     margin-left: -120px;
     font-size: 16px;
+    font-weight: bolder;
 }
 .submit-button:hover {
     cursor: pointer;
