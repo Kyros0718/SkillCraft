@@ -4,6 +4,7 @@ This is the backend for SkillCraft.
 
 global DEBUG
 DEBUG = True
+import openai
 from typing import List
 def generate_project_ideas(skill: str, level: str) -> List[str]:
     """
