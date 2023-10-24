@@ -35,25 +35,35 @@ body {
 /*SEARCH BAR*/
 .input-container {
     display: flex;
+    border-radius: 15px;
+    background-color: #3a3d2d;
+    border-color: white;
     
     
 }
 /*INPUT BOX*/
 .input-box {
+    border-style: none;
+    background-color: #757d5a;
+    color:white;
     width: 500px;
     border-radius:15px;
-    padding-left: 15px;
-    padding-top: 15px;
     padding-bottom: 15px;
+    padding-left: 15px;
     padding-right: 125px;
+    padding-top: 15px;
     font-size: 16px;
     font-weight: bolder;
 }
+.input-box::placeholder {
+    color:white;
+}
+
 /*SUBMIT BUTTON*/
 .submit-button {
     padding: 10px 20px;
     border-radius: 15px;
-    margin-top: 5px;
+    margin-top: 2.5px;
     margin-left: -120px;
     font-size: 16px;
     font-weight: bolder;
@@ -64,18 +74,26 @@ body {
 /*DROPDOWNS*/
 #dropdown {
     display: none;
+    background-color: #3a3d2d;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 #idea-dropdown {
     display: none;
 }
 .result-item {
+    font-weight: bolder;
     text-indent: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
     text-align: left; /* Left-align the items */
     width: 100%; /* Set the width of the items to match the search bar */
+}
+.result-item:is(:last-child) {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 .result-item:hover {
     background-color: #f0f0f0;

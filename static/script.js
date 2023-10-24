@@ -3,13 +3,20 @@ const dropdown = document.getElementById("dropdown");
 const questionsubject = document.getElementById("subject1");
 const skillsubject = document.getElementById("subject2");
 const projectsubject = document.getElementById("subject3");
+const searchbar = document.getElementsByClassName("input-container")
+
 var inputElement = document.getElementById("InputField");
 var inputValue = inputElement.value;
+
+
+
+
 form.addEventListener("submit", function(event) {
   event.preventDefault();
   if (inputElement.value.trim() !== '') {
     showDropdown(["Beginner", "Intermediate", "Expert"]);
     questionsubject.style.display = "none";
+    projectsubject.style.display = "none";
     skillsubject.style.display = "block";
   }
   else {
@@ -17,7 +24,11 @@ form.addEventListener("submit", function(event) {
     questionsubject.style.display = "block";
     skillsubject.style.display = "none";
     projectsubject.style.display = "none";
-    
+  }
+  if (dropdown.style.display !== "none") {
+    for (let i = 0; i < searchbar.length; i++) {
+      searchbar[i].style.border = "1px solid white";
+    }
   }
 });
 
@@ -43,6 +54,9 @@ function onItemClicked(selectedItem) {
     showDropdown(["item1","item2","item3","item4","item5","item6","item7","item8","item9","item10",])
   }
   else {
+    for (let i = 0; i < searchbar.length; i++) {
+      searchbar[i].style.border = "none";
+    }
     dropdown.style.display = "none";
     projectsubject.style.display = "none";
     questionsubject.style.display = "block";
