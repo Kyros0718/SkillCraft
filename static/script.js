@@ -1,5 +1,6 @@
 const form = document.getElementById("myForm");
-const skilldropdown = document.getElementById("skill-dropdown");
+const dropdown = document.getElementById("dropdown");
+const ideadropdown = document.getElementById("idea-dropdown");
 var inputElement = document.getElementById("InputField");
 var inputValue = inputElement.value;
 form.addEventListener("submit", function(event) {
@@ -8,25 +9,31 @@ form.addEventListener("submit", function(event) {
     showDropdown(["Beginner", "Intermediate", "Expert"]);
   }
   else{
-    skilldropdown.style.display = "none"
+    dropdown.style.display = "none"
   }
 });
 
 function showDropdown(items) {
-    skilldropdown.style.display = "block";
-    skilldropdown.innerHTML = ""; // Clear previous options
+    dropdown.style.display = "block";
+    dropdown.innerHTML = ""; // Clear previous options
+    ideadropdown.innerHTML = ""; // Clear previous options
+    
 
     items.forEach(itemText => {
         const resultItem = document.createElement("div");
         resultItem.classList.add("result-item");
         resultItem.textContent = itemText;
         resultItem.addEventListener("click", () => onItemClicked(itemText));
-        skilldropdown.appendChild(resultItem); // Corrected the variable name here
+        dropdown.appendChild(resultItem); // Corrected the variable name here
     });
 }
 
 function onItemClicked(selectedItem) {
-  if (selectedItem !== "Beginner" && selectedItem !== "Intermediate" && selectedItem !== "Expert") {
-    alert("loading...");
+  if (selectedItem === "Beginner" || selectedItem === "Intermediate" || selectedItem === "Expert") {
+    dropdown.style.display = "none";
+    showDropdown(["item1","item2","item3","item4","item5","item6","item7","item8","item9","item10",])
+  }
+  else {
+    dropdown.style.display = "none";
   }
 }
