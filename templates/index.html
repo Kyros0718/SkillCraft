@@ -9,48 +9,55 @@
     <meta name="copyright" content="Copyright © 2023 Ky-Anh Nguyen">
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
+
 <body>
-    <nav class="top-nav">
-        <ul>
-        <li><a href="">PROFILE</a></li>
-        <li><a href="">STUFF</a></li>
-        </ul>
-    </nav>
-    <nav class="left-nav"></nav>
-    
-    <div><a href="instruction.html">INSTRUCTION PAGE</a></div>
-    <div class="centered">
-    <div id="page-title">
-        <h1>Skill <span>C</span>raft</h1>
-    </div>
+    <div class="main-body">
+        <div id="page-title">
+            <h1>Skill <span>C</span>raft</h1>
+        </div>
 
-    <div>
-        <h2 id="subject1">What Skill Or Project Would You Like To Pursue?</h2>
-        <h2 id="subject2">Choose Your Current Skill Level</h2>
-        <h2 id="subject3">Choose Any Project To Pursue</h2>
-    </div>
+        <div>
+            <h2 id="subject1">What Skill Or Project Would You Like To Pursue?</h2>
+            <h2 id="subject2">Choose Your Current Skill Level</h2>
+            <h2 id="subject3">Choose Any Project To Pursue</h2>
+        </div>
 
-    <div>
-        <form id="myForm">
-            <div class="input-container">
-                <div>
+        <div>
+            <form id="myForm">
+                <div class="input-container">
                     <div>
-                        <input type="text" class="input-box" id="InputField" placeholder="Search a Project Idea">
+                        <div>
+                            <input type="text" class="input-box" id="InputField" placeholder="Search a Project Idea">
+                        </div>
+                        <div id="dropdown">
+                            <!-- skill-drowndown content goes here -->
+                        </div>
+                        <div id="idea-dropdown">
+                            <!-- idea-drowndown content goes here -->
+                        </div>
                     </div>
-                    <div id="dropdown">
-                        <!-- skill-drowndown content goes here -->
-                    </div>
-                    <div id="idea-dropdown">
-                        <!-- idea-drowndown content goes here -->
-                    </div>
+                    
+                    <div><input type="submit" value="Generate" class="submit-button"></div>
                 </div>
                 
-                <div><input type="submit" value="Generate" class="submit-button"></div>
-            </div>
-            
-        </form>
+            </form>
+        </div>
     </div>
-    </div>
+
+    <nav class="top-nav">
+        <ul>
+            <li><a href="">PROFILE</a></li>
+            <li><a href="">STUFF</a></li>
+        </ul>
+    </nav>    
+    
+    <nav class="left-nav">
+        <ul>
+            <li id="navlogo">Logo</li>
+            <li><a href="">Projects</a></li>
+            <li><a href="instruction.html">INSTRUCTION PAGE</a></li>
+        </ul>
+    </nav>
     
 
     <script src="../static/script.js"></script>
