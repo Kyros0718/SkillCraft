@@ -41,7 +41,10 @@ body {
     font-size: 16px;
 }
 /*DROPDOWNS*/
-#skill-dropdown {
+#dropdown {
+    display: none;
+}
+#idea-dropdown {
     display: none;
 }
 .result-item {
