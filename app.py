@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request
-import openai
 import json
 import os
-from typing import List
 import backend
 
 
