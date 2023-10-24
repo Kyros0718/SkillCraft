@@ -6,6 +6,9 @@ global DEBUG
 DEBUG = True
 import openai
 from typing import List
+import apikey
+
+key = apikey.API_KEY
 def generate_project_ideas(skill: str, level: str) -> List[str]:
     """
     Generate steps on how to do the project.
@@ -14,7 +17,7 @@ def generate_project_ideas(skill: str, level: str) -> List[str]:
         A list with strings, with the steps.
     """
     # Configure OpenAI API
-    openai.api_key = 'YOUR_KEY_HERE'
+    openai.api_key = key
     prompt = f"Generate 10 project ideas that involve {skill} at a {level} level and save it as a Python list."
     response = openai.Completion.create(
         engine="text-davinci-002",
@@ -26,7 +29,16 @@ def generate_project_ideas(skill: str, level: str) -> List[str]:
     )
 
     ideas = response.choices[0].text.strip().split("\n")
-    if DEBUG: print(ideas)
+    if DEBUG: print(
+            f"""
+            \nideas debug:\n
+            {ideas}
+            \ntype:{type(ideas)}\n
+            response JSON\n
+            {str(response)}
+            \n
+            """
+    )
     return ideas
 
 #@app.route('/generate_project_description', methods=['POST'])
@@ -38,7 +50,7 @@ def generate_project_description(idea: str) -> str:
         A String, with the description.
     """
     # Configure OpenAI API
-    openai.api_key = 'YOUR_KEY_HERE'
+    openai.api_key = key
     prompt = f"Generate a project description for a {idea}."
     response = openai.Completion.create(
         engine="text-davinci-002",
@@ -49,21 +61,33 @@ def generate_project_description(idea: str) -> str:
         temperature=0.7,
     )
     description = response.choices[0].text.strip()
-    if DEBUG: print(description)
+    if DEBUG: print(
+            f"""
+            \ndesciprtion debug:\n
+            {description}
+            \ntype:{type(description)}\n
+            response JSON\n
+            {str(response)}
+            \n
+            """
+    )
     return description
 
 #@app.route('/generate_steps', methods=['POST'])
 def generate_steps(project: str, description: str) -> List[str]:
     """
-    Benerate steps on how to do the project.
+    Generate steps on how to do the project.
 
     Returns:
         A list with strings, with the steps.
     """
     # Configure OpenAI API
-    openai.api_key = 'YOUR_KEY_HERE'
+    openai.api_key = key
     # Define the prompt for the current project idea and description
-    prompt = f"Generate a list of steps to complete the project '{project}' and {description} and save each step to a Python list."
+    prompt = f"""
+            Generate a list of 5 steps to complete the 
+            project '{project}' with the description '{description}'
+            """
     
     # Generate text using OpenAI's Completion module
     response = openai.Completion.create(
@@ -76,14 +100,27 @@ def generate_steps(project: str, description: str) -> List[str]:
     )
 
     # Create an empty list to store the steps
-    steps = []
+    #steps = []
+    steps = response.choices[0].text.strip().split("\n")
+    TEST = response.choices[0].text.strip().split("\n")
 
     # Append each output to the list of steps
-    for choice in response.choices:
-        steps.append(choice.text)
+    # for choice in response.choices:
+    #     steps.append(choice.text.strip())
 
     # Return the list of steps
-    if DEBUG: print(steps)
+    if DEBUG: print(
+            f"""
+            \nsteps debug:\n
+            {steps}
+            \ntype:{type(steps)}\n
+            response JSON\n
+            {str(response)}
+            \n
+            {TEST}
+            \n
+            """
+    )
     return steps
 
 
@@ -97,9 +134,15 @@ def generate_walkthrough(project: str, description: str, step: str) -> List[str]
     """
     # Define the prompt for the current step
     # Configure OpenAI API
-    openai.api_key = 'YOUR_KEY_HERE'
-    prompt = f"Provide a walkthrough of how to complete the step '{step}' for the project '{project}' with the description '{description}'
-      and save it as a Python list."
+
+
+
+    openai.api_key = key
+    prompt = f"""
+            Provide a walkthrough of 5 steps on how to complete 
+            the step '{step}' for the project '{project}' 
+            with the description '{description}' 
+            """
     
     # Generate text using OpenAI's Completion module
     response = openai.Completion.create(
@@ -112,10 +155,21 @@ def generate_walkthrough(project: str, description: str, step: str) -> List[str]
     )
 
     # Extract the walkthrough from the response
-    walkthrough = response.choices[0].text.strip()
+    walkthrough = response.choices[0].text.strip().split("\n")
 
     # Return the walkthrough
-    if DEBUG: print(walkthrough)
+    if DEBUG: print(
+            f"""
+            \nwalkthrough debug:\n
+            {step}, {project}\n
+            {description}\n
+            {walkthrough}
+            \ntype:{type(walkthrough)}\n
+            response JSON\n
+            {str(response)}
+            \n
+            """
+    )
     return walkthrough
 
 def generate_walkthroughs(project: str) -> List[str]:
@@ -135,12 +189,17 @@ def generate_walkthroughs(project: str) -> List[str]:
     for step in steps:
         # Generate the walkthrough for the current step
         walkthrough = generate_walkthrough(project, description, step)
-        # Create a new list for the current walkthrough
-        current_walkthrough = walkthrough
         # Append the new list to the main list of walkthroughs
-        walkthroughs.append(current_walkthrough)
+        walkthroughs.append(walkthrough)
 
 
     # Return the list of walkthroughs
-    if DEBUG: print(walkthroughs)
+    if DEBUG: print(
+            f"""
+            \nwalkthrough debug:\n
+            {walkthroughs}
+            \ntype:{type(walkthroughs)}\n
+            response JSON\n
+            """
+    )
     return walkthroughs
