@@ -1,1 +1,58 @@
+/*MAIN BODY*/
+body {
+    background-color: #1A0126;
+    color:white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
+.centered {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*PAGE TITLE*/
+#page-title {
+    font-size: 175%;
+}
+#page-title h1::first-letter {
+    color:red;
+}
+#page-title h1 span {
+    color:yellow;
+}
+
+
+.input-container {
+    display: flex;
+}
+/*INPUT BOX*/
+.input-box {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+}
+/*SUBMIT BUTTON*/
+.submit-button {
+    padding: 10px 20px;
+    margin-left: 5px;
+    font-size: 16px;
+}
+/*DROPDOWNS*/
+#skill-dropdown {
+    display: none;
+}
+.result-item {
+    text-indent: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: left; /* Left-align the items */
+    width: 100%; /* Set the width of the items to match the search bar */
+}
+.result-item:hover {
+    background-color: #f0f0f0;
+}
