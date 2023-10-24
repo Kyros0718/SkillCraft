@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>SkillCraft</title>
-        <meta charset="utf-8">
-        <meta name="author" content="Ky-Anh Nguyen">
-        <meta name="description" content="AI integration that generate project ideas for skill application and teaches with instruction for the project">
-        <meta name="keyword" content="AI integration, Project, Ideas, Learning, Education, Skill Application">
-        <meta name="copyright" content="Copyright © 2023 Ky-Anh Nguyen">
-        <link rel="stylesheet" href="../static/css/style.css">
-        <script src="../static/script.js"></script>
-    </head>
-    <body>
-        <h1>TEMPORARY TEST {{ item }}</h1>
-    </body>
+<head>
+    <title>SkillCraft</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Ky-Anh Nguyen, Scott Garcia, Vinh Ngo">
+    <meta name="description" content="AI integration that generates project ideas for skill application and teaches with instructions for the project">
+    <meta name="keyword" content="AI integration, Project, Ideas, Learning, Education, Skill Application">
+    <meta name="copyright" content="Copyright © 2023 Ky-Anh Nguyen">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <div><a href="instruction.html">INSTRUCTION PAGE</a></div>
+    <div class="centered">
+    <div id="page-title">
+        <h1>Skill <span>C</span>raft</h1>
+    </div>
+
+    <div>
+        <h2>What Project Would You Like To Pursue?</h2>
+    </div>
+
+    <div>
+        <form id="myForm">
+            <div class="input-container">
+                <div>
+                    <div>
+                        <input type="text" class="input-box" id="InputField" placeholder="Search a Project Idea">
+                    </div>
+                    <div id="skill-dropdown" class="left-aligned">
+                        <!-- skill-drowndown content goes here -->
+                    </div>
+                </div>
+                
+                <div><input type="submit" value="Submit" class="submit-button"></div>
+            </div>
+            
+        </form>
+    </div>
+    </div>
+    <div id="ideas-dropdown"></div>
+
+    <script src="../static/script.js"></script>
+</body>
 </html>
