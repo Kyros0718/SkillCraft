@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import json
 import os
-import backend
+#import backend
 
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
