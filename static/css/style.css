@@ -8,9 +8,11 @@ body {
 
 
 :root {
-    --left-nav-width: 200px;
-    --top-nav-height: 50px;
-  }
+    --left-nav-width: 250px;
+    --top-nav-height: 60px;
+}
+
+
 /*TOP NAVIGATION BAR*/
 .top-nav {
     position: fixed;
@@ -55,8 +57,16 @@ body {
 }#navlogo{
     background-color: #333;
     color:black;
-    height: 50px;
-}.left-nav ul li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: left
+    
+}#navlogo img{
+    height: var(--top-nav-height);
+    padding: 10px;
+}
+.left-nav ul li {
     text-align: left;
     background-color:white;
     text-align: center;
