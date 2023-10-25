@@ -8,7 +8,7 @@ body {
 
 
 :root {
-    --left-nav-width: 250px;
+    --left-nav-width: 275px;
     --top-nav-height: 60px;
     --nav-back-color: #121317;
     --nav-logo-text-color: white;
@@ -68,7 +68,8 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
-    text-align: left
+    text-align: left;
+    margin: 0;
 }#navlogo img{
     height: var(--top-nav-height);
     padding: 10px;
@@ -77,9 +78,10 @@ body {
     font-size: medium;
 }.left-nav ul li {
     text-align: left;
-    text-align: center;
     font-size: large;
     font-weight: bold;
+    margin-top: 15px;
+    margin-left: 50px;
 }.left-nav a{
     text-decoration: none;
     color: var(--nav-text-color);
@@ -95,7 +97,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: black;
+    background-color: rgb(77, 38, 38);
     
 }
 
