@@ -10,6 +10,10 @@ body {
 :root {
     --left-nav-width: 250px;
     --top-nav-height: 60px;
+    --nav-back-color: #121317;
+    --nav-logo-text-color: white;
+    --nav-text-color: rgb(187, 187, 187);
+    --nav-border: 1px solid rgb(50, 46, 63);
 }
 
 
@@ -18,12 +22,13 @@ body {
     position: fixed;
     top: 0;
     left: var(--left-nav-width); /*2px=left_nav_border_thickness*/
-    background-color: #333;
+    background-color: var(--nav-back-color);
     height: var(--top-nav-height);
     width: calc(100% - var(--left-nav-width));
-    color: white;
+    color: var(--nav-text-color);
     display: flex;
     justify-content: flex-end;
+    border-bottom: var(--nav-border);
 }.top-nav ul {
     list-style: none;
     display: flex;
@@ -35,9 +40,13 @@ body {
     margin-right: 5px;
     height: 20px;
     text-align: center;
+    font-size: large;
+    font-weight: bold;
     border-style: solid;
     border-color: black;
-    background-color:white;
+}.top-nav a{
+    text-decoration: none;
+    color: var(--nav-text-color);
 }
 
 
@@ -48,28 +57,32 @@ body {
     left: 0;
     height: 100%;
     width: var(--left-nav-width);
-    background-color: #333;
-    border-right: 2px solid white;
+    background-color: var(--nav-back-color);
+    color: var(--nav-logo-text-color);
+    border-right: var(--nav-border);
 }.left-nav ul {
     list-style: none;
     margin: 0;
     padding:0%;
 }#navlogo{
-    background-color: #333;
-    color:black;
     height: 100%;
     display: flex;
     align-items: center;
     text-align: left
-    
 }#navlogo img{
     height: var(--top-nav-height);
     padding: 10px;
-}
-.left-nav ul li {
+}#navlogo div{
+    padding-right: 10px;
+    font-size: medium;
+}.left-nav ul li {
     text-align: left;
-    background-color:white;
     text-align: center;
+    font-size: large;
+    font-weight: bold;
+}.left-nav a{
+    text-decoration: none;
+    color: var(--nav-text-color);
 }
 
 

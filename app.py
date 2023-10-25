@@ -10,6 +10,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/instruction.html')
+def instruction():
+    return render_template('instruction.html')
+
 #unwrapping the json files from the front end into something that can be used for the backend
 @app.route('/generate_walkthroughs', methods=['POST'])
 def generate_walkthroughs() -> str:
