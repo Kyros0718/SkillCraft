@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
 
       loadingContainer.style.display = 'none';
       content.style.display = 'block';
-  }, 1500); // 1000 milliseconds = 1.0 seconds
+  }, 2500); // 1000 milliseconds = 1.0 seconds
 });
 
 
