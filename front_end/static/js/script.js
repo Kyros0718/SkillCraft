@@ -9,14 +9,14 @@ var inputElement = document.getElementById("InputField");
 var inputValue = inputElement.value;
 
 window.addEventListener('load', function () {
-  // Simulate a delay to keep the loading screen visible for a longer period (e.g., 1.5 seconds).
+  // Simulate a delay to keep the loading screen visible for a longer period
   setTimeout(function () {
       const loadingContainer = document.querySelector('.loading-container');
       const content = document.querySelector('.website-container');
 
       loadingContainer.style.display = 'none';
       content.style.display = 'block';
-  }, 0); // 1500 milliseconds = 1.5 seconds
+  }, 1500); // 1000 milliseconds = 1.0 seconds
 });
 
 
