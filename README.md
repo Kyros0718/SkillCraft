@@ -8,5 +8,5 @@
 <br>
 
 - Front Isolation: [https://kyros0718.github.io/SkillCraft/front_end/templates/](https://kyros0718.github.io/SkillCraft/front_end/templates/)
-- Website: [www.skillc.tech](www.youtube.com)
+- Website: www.skillc.tech
 
