@@ -12,11 +12,11 @@ window.addEventListener('load', function () {
   // Simulate a delay to keep the loading screen visible for a longer period (e.g., 1.5 seconds).
   setTimeout(function () {
       const loadingContainer = document.querySelector('.loading-container');
-      const content = document.querySelector('.main-body');
+      const content = document.querySelector('.website-container');
 
       loadingContainer.style.display = 'none';
       content.style.display = 'block';
-  }, 1500); // 1500 milliseconds = 1.5 seconds
+  }, 0); // 1500 milliseconds = 1.5 seconds
 });
 
 

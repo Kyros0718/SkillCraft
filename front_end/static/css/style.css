@@ -1,10 +1,13 @@
-/*MAIN BODY*/
+/***** WEB_STRUCTURE *****/
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~ LOADING PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*LOADING PAGE*/
 .loading-container {
@@ -40,35 +43,50 @@ body {
 }
 
 
-.main-body {
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~ WEBSITE PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/***** PAGE_SETTING *****/
+.website-container {
     display: none;
-    color:white;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-/*NAVIGATION BAR SETTING*/
+
+
+/***** STRUCTURE_SETTING *****/
 :root {
+    --background-color: #121317;
+
     --left-nav-width: 275px;
     --top-nav-height: 60px;
-    --nav-back-color: #121317;
+    --nav-border: 1px solid rgb(50, 46, 63);
+
     --nav-logo-text-color: white;
     --nav-text-color: rgb(187, 187, 187);
-    --nav-border: 1px solid rgb(50, 46, 63);
+    --body-text-color: white;
+
+    --text-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    --body-margin: 40px;
+    --bin-padding: 20px;
 }
+    
 
 
-/*TOP NAVIGATION BAR*/
+/*_______________ TOP NAVIGATION BAR _______________*/
 .top-nav {
     position: fixed;
     top: 0;
-    left: var(--left-nav-width); /*2px=left_nav_border_thickness*/
-    background-color: var(--nav-back-color);
+    left: var(--left-nav-width);
+    background-color: var(--background-color);
     height: var(--top-nav-height);
     width: calc(100% - var(--left-nav-width));
     color: var(--nav-text-color);
     display: flex;
     justify-content: flex-end;
     border-bottom: var(--nav-border);
+    font-family: var(--text-font);
 }.top-nav ul {
     list-style: none;
     display: flex;
@@ -90,16 +108,18 @@ body {
 }
 
 
-/*LEFT NAVIGATION BAR*/
+
+/*_______________ LEFT NAVIGATION BAR _______________*/
 .left-nav {
     position:fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: var(--left-nav-width);
-    background-color: var(--nav-back-color);
+    background-color: var(--background-color);
     color: var(--nav-logo-text-color);
     border-right: var(--nav-border);
+    font-family: var(--text-font);
 }.left-nav ul {
     list-style: none;
     margin: 0;
@@ -128,17 +148,34 @@ body {
 }
 
 
-/*ADJUSTED BODY*/
-.adjust-body {
+
+/*_______________ MAIN BODY _______________*/
+.main-body {
     position: fixed;
     top: var(--top-nav-height);
-    left: var(--left-nav-width);
-    width: calc(100% - var(--left-nav-width));
-    height: calc(100% - var(--top-nav-height));
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #121317;   
+    left: var(--left-nav-width);
+    width: calc(100% - var(--left-nav-width));
+    height: calc(100% - var(--top-nav-height));
+    background-color: var(--background-color);
+    color: var(--body-text-color);
+    font-family: var(--text-font);
+    padding-top: var(--body-margin);
+}
+
+
+/*----- project search bin -----*/
+.project-search-box{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(50, 46, 63);
+    width: calc(100% - 2 * var(--body-margin) - 2 * var(--bin-padding));
+    border-radius:15px;
+    align-items: center;
+    padding: var(--bin-padding);
 }
 
 
@@ -165,6 +202,7 @@ body {
 .input-container {
     display: flex;
     border-radius: 15px;
+    width: 640px;
     background-color: #3a3d2d;
     border-color: white;
 }
@@ -191,6 +229,7 @@ body {
 /*SUBMIT BUTTON*/
 .submit-button {
     padding: 10px 20px;
+    width: 110px;
     border-radius: 15px;
     margin-top: 2.5px;
     margin-left: -120px;
@@ -216,8 +255,8 @@ body {
     padding-bottom: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
-    text-align: left; /* Left-align the items */
-    width: 100%; /* Set the width of the items to match the search bar */
+    text-align: left;
+    width: 100%;
 }.result-item:is(:last-child) {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
