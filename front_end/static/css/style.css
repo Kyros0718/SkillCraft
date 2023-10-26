@@ -6,6 +6,7 @@ body {
 }
 
 
+/*LOADING PAGE*/
 .loading-container {
     position: fixed;
     top: 0;
@@ -20,7 +21,6 @@ body {
 }.loading-container div{
     width: 200px;
     height: 200px;
-
 }.loading-container img{
     position: absolute;
     width: 200px;
