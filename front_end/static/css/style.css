@@ -69,7 +69,7 @@ body {
     --text-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
     --body-margin: 40px;
-    --bin-padding: 20px;
+    --bin-padding: 40px;
 }
     
 
@@ -152,6 +152,7 @@ body {
 /*_______________ MAIN BODY _______________*/
 .main-body {
     position: fixed;
+    overflow: auto;
     top: var(--top-nav-height);
     display: flex;
     flex-direction: column;
@@ -166,9 +167,9 @@ body {
 }
 
 
-/*----- project search bin -----*/
+/*----- project search box -----*/
 .project-search-box{
-    overflow: hidden;
+    overflow-y: visible;
     display: flex;
     flex-direction: column;
     background-color: rgb(50, 46, 63);
@@ -262,4 +263,47 @@ body {
     border-bottom-right-radius: 15px;
 }.result-item:hover {
     background-color: #f0f0f0;
+}
+
+
+/*----- walkthrough box -----*/
+.walkthrough-box {
+
+    overflow-wrap: break-word;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(50, 46, 63);
+    width: calc(100% - 2 * var(--body-margin) - 2 * var(--bin-padding));
+    border-radius:15px;
+    padding: var(--bin-padding);
+    margin-top: var(--bin-padding)
+}
+
+.project-type {
+    font-size: 200%;
+    font-weight: bolder;
+}
+
+
+.div-line {
+    display: block;
+    background-color: white;
+    height: 2px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/*----- empty box -----*/
+.empty-box {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    width: calc(100% - 2 * var(--body-margin) - 2 * var(--bin-padding));
+    height: 100px;
+    border-radius:15px;
+    padding: var(--bin-padding);
+    margin-top: var(--bin-padding)
 }
