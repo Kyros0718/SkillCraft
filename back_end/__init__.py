@@ -1,16 +1,21 @@
 # BackEnd/__init__.py
-
+"""
+File for intergration between backend and frontend
+"""
 from flask import Flask, request, render_template
 from back_end.routes import bp
-from back_end import backend
+import back_end.backend as backend
 import os
-import json
 
 app = Flask(__name__, template_folder='../front_end/templates') #Help Flask Locate templates folder
 
 # Other configurations and imports can go here
+import json
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 #unwrapping the json files from the front end into something that can be used for the backend
 @app.route('/generate_walkthroughs', methods=['POST'])
