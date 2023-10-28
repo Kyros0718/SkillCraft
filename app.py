@@ -1,4 +1,4 @@
-# run.py
+# app.py
 
 from back_end.__init__ import app
 

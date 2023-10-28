@@ -5,8 +5,9 @@ This is the backend for SkillCraft.
 global DEBUG
 DEBUG = True
 import openai
+from back_end import apikey
 from typing import List
-import apikey
+
 
 key = apikey.API_KEY
 def generate_project_ideas(skill: str, level: str) -> List[str]:

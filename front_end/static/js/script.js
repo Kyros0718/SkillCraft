@@ -8,6 +8,26 @@ const searchbar = document.getElementsByClassName("input-container")
 var inputElement = document.getElementById("InputField");
 var inputValue = inputElement.value;
 
+class SkillLevel {
+  /**
+   * This is for differentiating skill levels from text strings
+   * @param {String} Level 
+   */
+  constructor(Level) {
+    this._skillLevel = Level;
+  }
+
+  get skillLevel() {
+    return this._skillLevel;
+  }
+}
+
+const beginner = new SkillLevel("Beginner");
+const intermediate = new SkillLevel("Intermediate");
+const expert = new SkillLevel("Expert");
+
+const skillLevels = [beginner, intermediate, expert];
+
 window.addEventListener('load', function () {
   // Simulate a delay to keep the loading screen visible for a longer period
   setTimeout(function () {
@@ -56,11 +76,12 @@ function showDropdown(items) {
 }
 
 function onItemClicked(selectedItem) {
-  if (selectedItem === "Beginner" || selectedItem === "Intermediate" || selectedItem === "Expert") {
+  if (selectedItem instanceof SkillLevel) {
+    alert("this works");
     dropdown.style.display = "none";
     skillsubject.style.display = "none";
     projectsubject.style.display = "block";
-    showDropdown(["item1","item2","item3","item4","item5","item6","item7","item8","item9","item10",])
+    showDropdown(["item1","item2","item3","item4","item5","item6","item7","item8","item9","item10"])
   }
   else {
     for (let i = 0; i < searchbar.length; i++) {
