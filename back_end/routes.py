@@ -1,4 +1,8 @@
 # BackEnd/routes.py
+"""
+Renders the html pages
+Tells the website browser to go to this "route" and render these html files
+"""
 
 from flask import Blueprint, render_template
 
