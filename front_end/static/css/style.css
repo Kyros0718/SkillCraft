@@ -295,6 +295,27 @@ body {
     margin-bottom: 20px;
 }
 
+.step-button {
+    background-color: #55b458;
+    border: none;
+    color: rgb(200, 200, 200);
+    padding: 2% 50px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: auto;
+    margin-top: 0.25%;
+    margin-bottom: 0.25%;
+    width: 50%;
+    cursor: pointer;
+}
+
+.step-button:hover {
+    background-color: #59c25c;
+    color: white;
+}
+
 
 /*----- empty box -----*/
 .empty-box {
