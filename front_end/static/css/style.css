@@ -69,7 +69,8 @@ body {
     --text-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
     --body-margin: 40px;
-    --bin-padding: 40px;
+    --box-padding: 40px;
+    --test: 1000px;
 }
     
 
@@ -169,14 +170,15 @@ body {
 
 /*----- project search box -----*/
 .project-search-box{
-    overflow-y: visible;
     display: flex;
     flex-direction: column;
     background-color: rgb(50, 46, 63);
-    width: calc(100% - 2 * var(--body-margin) - 2 * var(--bin-padding));
+    width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
+    height: 100%;
     border-radius:15px;
+    text-align: center;
     align-items: center;
-    padding: var(--bin-padding);
+    padding: var(--box-padding);
 }
 
 
@@ -192,34 +194,58 @@ body {
 
 
 /*SEARCHBAR SUBJECTS*/
-#subject2 {
-    display: none;    
-}#subject3 {
-    display: none;    
+#subject2, #subject3 {
+    display: none;      
 }
 
+.barrier {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    width: 100%;
+    padding-inline: calc(var(--box-padding));
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
 
 /*SEARCH BAR*/
 .input-container {
-    display: flex;
+    display: block;
+    width: 600px;
+
     border-radius: 15px;
-    width: 640px;
     background-color: #3a3d2d;
-    border-color: white;
+    
+
+}@media screen and (max-width: calc(600px * 1.75 )) {
+    .input-container {
+        width: 100%;
+        min-width: 275px;
+    }
+}
+
+.searchbar {
+    position: relative;
+    display: flex;
+    height: 40px;
+    width: 100%;
+    align-items: center;
 }
 
 
 /*INPUT BOX*/
 .input-box {
+    position: absolute;
+    left: 0;
+    padding-left: 15px;
+    padding-right: 100px;
     border-style: none;
     background-color: #757d5a;
     color:white;
-    width: 500px;
+    width: calc(100% - 15px - 100px);
+    height: 100%;
     border-radius:15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    padding-right: 125px;
-    padding-top: 15px;
     font-size: 16px;
     font-weight: bolder;
 }.input-box::placeholder {
@@ -229,13 +255,14 @@ body {
 
 /*SUBMIT BUTTON*/
 .submit-button {
-    padding: 10px 20px;
-    width: 110px;
+    position: absolute;
+    right:0;
     border-radius: 15px;
-    margin-top: 2.5px;
-    margin-left: -120px;
+    margin-right: 5px;
     font-size: 16px;
+    height: 90%;
     font-weight: bolder;
+    
 }.submit-button:hover {
     cursor: pointer;
 }
@@ -244,9 +271,7 @@ body {
 /*DROPDOWNS*/
 #dropdown {
     display: none;
-    background-color: #3a3d2d;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+
 }#idea-dropdown {
     display: none;
 }.result-item {
@@ -274,10 +299,10 @@ body {
     display: flex;
     flex-direction: column;
     background-color: rgb(50, 46, 63);
-    width: calc(100% - 2 * var(--body-margin) - 2 * var(--bin-padding));
+    width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
     border-radius:15px;
-    padding: var(--bin-padding);
-    margin-top: var(--bin-padding)
+    padding: var(--box-padding);
+    margin-top: var(--box-padding)
 }
 
 .project-type {
@@ -322,9 +347,9 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--background-color);
-    width: calc(100% - 2 * var(--body-margin) - 2 * var(--bin-padding));
+    width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
     height: 100px;
     border-radius:15px;
-    padding: var(--bin-padding);
-    margin-top: var(--bin-padding)
+    padding: var(--box-padding);
+    margin-top: var(--box-padding)
 }
