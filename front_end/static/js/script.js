@@ -1,3 +1,7 @@
+$(document).ready(function() {
+  console.log("Hello Jquery loaded in js file");
+});
+
 const form = document.getElementById("myForm");
 const dropdown = document.getElementById("dropdown");
 const [questionsubject, skillsubject, projectsubject] = [
@@ -7,7 +11,7 @@ const [questionsubject, skillsubject, projectsubject] = [
 const searchbar = document.getElementsByClassName("input-container")
 
 var inputElement = document.getElementById("InputField");
-var inputValue = inputElement.value;
+var inputValue = inputElement.value
 
 
 //RENDER WEB-PAGE AFTER LOADING-PAGE 
@@ -39,7 +43,7 @@ const skillLevels = [
 
 const skillLevelNames = skillLevels.map(level => level.skillLevel);
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", function(event) { //im not sure if i like the fact that this doesnt know that its holding skillLevel objects
   event.preventDefault();
   if (inputElement.value.trim() !== '') { //If Input is not Empty, Render Skill Levels
     
@@ -80,18 +84,46 @@ function showDropdown(items) {
 }
 
 function onItemClicked(selectedItem) {
-  if (skillLevelNames.includes(selectedItem)) {
-    dropdown.style.display = "none";
-    skillsubject.style.display = "none";
-    projectsubject.style.display = "block";
-    showDropdown(["item1","item2","item3","item4","item5","item6","item7","item8","item9","item10"])
-  }
-  else {
-    for (let i = 0; i < searchbar.length; i++) {
-      searchbar[i].style.border = "none";
+    alert("AYO");
+    if (skillLevelNames.includes(selectedItem)) {
+      dropdown.style.display = "none";
+      skillsubject.style.display = "none";
+      projectsubject.style.display = "block";
+      showDropdown(["item1","item2","item3","item4","item5","item6","item7","item8","item9","item10"])
     }
-    dropdown.style.display = "none";
-    projectsubject.style.display = "none";
-    questionsubject.style.display = "block";
-  }
+    else {
+      for (let i = 0; i < searchbar.length; i++) {
+        searchbar[i].style.border = "none";
+      }
+      dropdown.style.display = "none";
+      projectsubject.style.display = "none";
+      questionsubject.style.display = "block";
+    }
 }
+
+
+function addButtons() { //maybe change to boxes to make back buttons and walkthrough buttons
+  /*
+  adds an array of text into the walkthroughs
+  */
+  TEST = ["blah blah blah", "E E E E", "T T T t"]; //would just add it as a parameter here for steps array
+  for (let i = 0; i < TEST.length; i++) {
+    let step = (i + 1).toString();
+    let walkthrough = TEST[i];
+    const text1 = `Step ${step}: ${walkthrough}`; //converts the list into text for buttons
+    addButton(text1);
+  }
+  $('#project-type').html(":)"); //changing text of existing HTML
+}
+
+function addButton(text) {
+  /*
+  adds individual buttons before div-line-end
+  */
+  var txt2 = $(`<button></button>`).text(text); //probably add onCLicked to submit text for backend
+  $("#div-line-end").before(txt2);
+  txt2.addClass("step-button");
+  console.log("it working");
+}
+
+//$('#project-type').html("Project: STUFF"); //changing text of existing HTML

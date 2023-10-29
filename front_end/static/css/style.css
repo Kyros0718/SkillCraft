@@ -385,15 +385,15 @@ body {
     background-color: #55b458;
     border: none;
     color: rgb(200, 200, 200);
-    padding: 2% 50px;
+    padding: 2% 25px;
     text-align: left;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: auto;
-    margin-top: 0.25%;
-    margin-bottom: 0.25%;
-    width: 50%;
+    margin-top: 0.1%;
+    margin-bottom: 0.1%;
+    width: 75%;
     cursor: pointer;
 }
 
