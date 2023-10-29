@@ -111,19 +111,28 @@ function addButtons() { //maybe change to boxes to make back buttons and walkthr
     let step = (i + 1).toString();
     let walkthrough = TEST[i];
     const text1 = `Step ${step}: ${walkthrough}`; //converts the list into text for buttons
-    addButton(text1);
+    const id = `button-step-${step}`;
+    addButton(text1, id);
   }
-  $('#project-type').html(":)"); //changing text of existing HTML
 }
 
-function addButton(text) {
+function addButton(text, id) {
   /*
   adds individual buttons before div-line-end
   */
-  var txt2 = $(`<button></button>`).text(text); //probably add onCLicked to submit text for backend
+  var txt2 = $(`<button id=${id} onclick="stepButtonCLicked(this)"></button>`).text(text); //probably add onCLicked to submit text for backend
   $("#div-line-end").before(txt2);
   txt2.addClass("step-button");
   console.log("it working");
 }
 
-//$('#project-type').html("Project: STUFF"); //changing text of existing HTML
+function stepButtonCLicked(ele) {
+  let id = ele.id;
+  let text = document.getElementById(id).innerHTML; // would prob need to parse out the Step {number}: to get good prompt or be able to share the walkthrough text
+  $('#project-type').html(text); //changing text of existing HTML
+  /*
+  -----add back-end function here------
+  */
+  console.log("step button clicked");
+}
+
