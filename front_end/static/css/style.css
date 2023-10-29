@@ -94,6 +94,7 @@ body {
         
         --box-background: rgb(32, 39, 41);
         --box-padding: 40px;
+        --box-radius: 15px;
 }
 
 /*WEBSITE PAGE*/
@@ -215,7 +216,7 @@ body {
 
     height: calc(100% - var(--top-nav-height));
     width: calc(100% - var(--left-nav-width));
-        overflow: auto;
+        overflow: scroll;
 
     padding-top: var(--body-margin);
 
@@ -227,22 +228,27 @@ body {
 
     color: var(--body-font-color);
     font-family: var(--text-font);
+}   .main-body::-webkit-scrollbar {
+        height: 0;
+        width: 0;
 }
 
 .box{
     background-color: var(--box-background);
+    border-radius: var(--box-radius);
+    padding: var(--box-padding);
 }
+
 /*----- project search box -----*/
 #project-search{
-    display: flex;
-    flex-direction: column;
-    
-    width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
     height: 100%;
-    border-radius:15px;
-    text-align: center;
-    align-items: center;
-    padding: var(--box-padding);
+    width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
+    
+    display: flex;
+        flex-direction: column;
+    
+        align-items: center;
+        text-align: center;
 }
 
 
@@ -361,8 +367,6 @@ body {
     display: flex;
     flex-direction: column;
     width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
-    border-radius:15px;
-    padding: var(--box-padding);
     margin-top: var(--box-padding)
 }
 
