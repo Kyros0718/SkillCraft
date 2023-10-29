@@ -79,17 +79,20 @@ body {
         --nav-background: var(--web-background);
         --nav-border: 1px solid rgb(50, 46, 63);
 
-        --nav-logo-font-color: white;
+        --nav-logo-font-color: var(--body-font-color);
         --nav-font-color: rgb(187, 187, 187);
         --nav-font-size: large;
 
         --nav-button-color: none;
         --nav-button-border: 1px solid white;
         --nav-button-radius: 15px;
+
     /*BODY_SETTING*/
     --body-background: var(--web-background);
         --body-margin: 40px;
-        --body-text-color: white;
+        --body-font-color: white;
+        
+        --box-background: rgb(32, 39, 41);
         --box-padding: 40px;
 }
 
@@ -195,9 +198,6 @@ body {
     height: var(--top-nav-height);
 
     margin: 10px;
-}#navlogo img:hover{
-    background-color: rgb(201, 129, 36);
-    cursor: pointer;
 }#navlogo h1{
     margin-left: 10px;
 }.left-nav a{
@@ -225,16 +225,18 @@ body {
     
     background-color: var(--body-background);
 
-    color: var(--body-text-color);
+    color: var(--body-font-color);
     font-family: var(--text-font);
 }
 
-
+.box{
+    background-color: var(--box-background);
+}
 /*----- project search box -----*/
-.project-search-box{
+#project-search{
     display: flex;
     flex-direction: column;
-    background-color: rgb(50, 46, 63);
+    
     width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
     height: 100%;
     border-radius:15px;
@@ -352,13 +354,12 @@ body {
 
 
 /*----- walkthrough box -----*/
-.walkthrough-box {
+#walkthrough {
 
     overflow-wrap: break-word;
     max-height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: rgb(50, 46, 63);
     width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
     border-radius:15px;
     padding: var(--box-padding);
