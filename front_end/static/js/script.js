@@ -11,7 +11,7 @@ const [questionsubject, skillsubject, projectsubject] = [
 const searchbar = document.getElementsByClassName("input-container")
 
 var inputElement = document.getElementById("InputField");
-var inputValue = inputElement.value
+var inputValue = inputElement.value;
 
 
 //RENDER WEB-PAGE AFTER LOADING-PAGE 
