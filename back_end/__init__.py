@@ -13,9 +13,6 @@ app = Flask(__name__, template_folder='../front_end/templates') #Help Flask Loca
 import json
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 #unwrapping the json files from the front end into something that can be used for the backend
 @app.route('/generate_walkthroughs', methods=['POST'])
@@ -28,6 +25,8 @@ def generate_walkthroughs() -> str:
     """
     # Parse the JSON payload
     data = json.loads(request.data)
+    print("HELLO WORLDS")
+    print(data)
     project = data['project']
 
     # Generate project ideas using OpenAI's GPT-3 API
@@ -54,6 +53,7 @@ def generate_project_ideas() -> str:
 
     # Return the project ideas as a JSON response
     return json.dumps(ideas)
+
 
 app.static_folder = '../front_end/static' #Help Flask Locate static folder
 app.register_blueprint(bp) #Regester Blueprint to Render html pages
