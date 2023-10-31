@@ -120,7 +120,7 @@ function addButton(text, id) {
   /*
   adds individual buttons before div-line-end
   */
-  var txt2 = $(`<button id=${id} onclick="stepButtonCLicked(this)"></button>`).text(text); //probably add onCLicked to submit text for backend
+  let txt2 = $(`<button id=${id} onclick="stepButtonCLicked(this)"></button>`).text(text); //probably add onCLicked to submit text for backend
   $("#div-line-end").before(txt2);
   txt2.addClass("step-button");
   console.log("it working");
