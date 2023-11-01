@@ -4,25 +4,27 @@ const [questionsubject, skillsubject, projectsubject] = [
   document.getElementById("subject1"),
   document.getElementById("subject2"),
   document.getElementById("subject3")]
-const searchbar = document.getElementsByClassName("input-container")
+const searchbar = document.getElementsByClassName("input-container");
 
 var inputElement = document.getElementById("InputField");
-var inputValue = inputElement.value;
+var inputText = inputElement.textContent;
+
+const walkthrough_title = document.getElementById("project-type");
 
 
 //RENDER WEB-PAGE AFTER LOADING-PAGE 
 window.addEventListener('load', function () {
-
-  setTimeout(function () {
+  setTimeout(function () { //SET LOADING-TIMER
       const loadingContainer = document.querySelector('.loading-container');
       const content = document.querySelector('.website-container');
 
       loadingContainer.style.display = 'none';
       content.style.display = 'block';
-  }, 0); // 1000 milliseconds = 1.0 seconds
+  }, 2500); // 1000 milliseconds = 1.0 seconds
 });
 
 
+//CLASS OF SKILL-LEVELS FOR PROJECTS
 class SkillLevel {
   constructor(Level) {
     this._skillLevel = Level;
@@ -39,18 +41,18 @@ const skillLevels = [
 
 const skillLevelNames = skillLevels.map(level => level.skillLevel);
 
+
+//Interaction with the Generate-Button
 form.addEventListener("submit", function(event) {
   event.preventDefault();
   if (inputElement.value.trim() !== '') { //If Input is not Empty, Render Skill Levels
-    
-    showDropdown(skillLevelNames);
+    showDropdown(skillLevelNames); //Display Dropdowns Of Skill Levels
 
     questionsubject.style.display = "none";
-    skillsubject.style.display = "block";
+    skillsubject.style.display = "block"; //Change Subject Titles
     projectsubject.style.display = "none";
   }
   else { //If Empty, dont Render Anything
-
     dropdown.style.display = "none";
 
     questionsubject.style.display = "block";
@@ -81,13 +83,32 @@ function showDropdown(items) {
 
 function onItemClicked(selectedItem) {
   if (skillLevelNames.includes(selectedItem)) {
+
+    fetch('/project_searching', { //Send User's Input Text and Skill Level to the Server
+      method: 'POST',
+      body: JSON.stringify({input_text: inputElement.value , skill_level: selectedItem }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => { //BACK_END LIST OF PROJECT DROPDOWN
+        showDropdown(data.project_list)
+    })
+    .catch(error => { //FRONT_END LIST OF PROJECT DROPDOWN
+      console.error("YOU ARE IN FRONT_END DISPLAY ONLY");
+      showDropdown(["TEMP_PROJECT 1", "TEMP_PROJECT 2","TEMP_PROJECT 3", "TEMP_PROJECT 4","TEMP_PROJECT 5", "TEMP_PROJECT 6","TEMP_PROJECT 7", "TEMP_PROJECT 8","TEMP_PROJECT 9", "TEMP_PROJECT 10",])
+    });
+
     dropdown.style.display = "none";
     skillsubject.style.display = "none";
     projectsubject.style.display = "block";
-    showDropdown(["item1","item2","item3","item4","item5","item6","item7","item8","item9","item10"])
+    
   }
   else {
-    for (let i = 0; i < searchbar.length; i++) {
+    walkthrough_title.textContent = selectedItem; //CHANGE WALKTHROUGH TITLE TO PROJECT SELECTED
+
+    for (let i = 0; i < searchbar.length; i++) { //Stop Heighlighting Dropdown Border
       searchbar[i].style.border = "none";
     }
     dropdown.style.display = "none";

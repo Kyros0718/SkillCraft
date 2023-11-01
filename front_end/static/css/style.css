@@ -370,7 +370,7 @@ body {
     margin-top: var(--box-padding)
 }
 
-.project-type {
+#project-type {
     font-size: 200%;
     font-weight: bolder;
 }
