@@ -17,8 +17,8 @@ const walkthrough_title = document.getElementById("project-type");
 const leftNav = document.getElementById("left-nav")
 const topNav = document.getElementById("top-nav")
 const mainBody = document.getElementById("main-body")
-const leftNavWidth = rootStyles.getPropertyValue('--left-nav-width');
-const topNavHeight = rootStyles.getPropertyValue('--top-nav-height')
+const logoTop = document.getElementById('logo-top')
+const logoLeft = document.getElementById('logo-left')
 
 //RENDER WEB-PAGE AFTER LOADING-PAGE 
 window.addEventListener('load', function () {
@@ -31,17 +31,34 @@ window.addEventListener('load', function () {
   }, 0); // 1000 milliseconds = 1.0 seconds
 });
 
-if (window.innerWidth <= 1000){
+
+if (window.innerWidth <= 1000){ //left-NAV defaul display depends on window width
   leftNav.style.display = 'none';
   topNav.style.width = '100%';
   topNav.style.left = '0';
-  mainBody.style.left= '0';
-  mainBody.style.width= '100%';
+  mainBody.style.left = '0';
+  mainBody.style.width = '100%';
+  logoTop.style.display = 'block';
+};
 
-}
-else {
+logoTop.addEventListener("click", function() { //Turn Off left-NAV
   leftNav.style.display = 'block';
-}
+  topNav.style.width = 'calc(100% - var(--left-nav-width))';
+  topNav.style.left = 'var(--left-nav-width)';
+  mainBody.style.left = 'var(--left-nav-width)';
+  mainBody.style.width = 'calc(100% - var(--left-nav-width))';
+  logoTop.style.display = 'none';
+});
+
+logoLeft.addEventListener("click", function() { //Turn On left-Nav
+  leftNav.style.display = 'none';
+  topNav.style.width = '100%';
+  topNav.style.left = '0';
+  mainBody.style.left = '0';
+  mainBody.style.width = '100%';
+  logoTop.style.display = 'block';
+});
+
 //CLASS OF SKILL-LEVELS FOR PROJECTS
 class SkillLevel {
   constructor(Level) {

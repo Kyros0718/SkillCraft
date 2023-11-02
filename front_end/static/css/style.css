@@ -164,6 +164,12 @@ body {
 
     color: var(--nav-font-color);
     font-family: var(--text-font);
+}.top-nav img{
+    display: none;
+    position: absolute;
+    left: 5px;
+    top: 3px;
+    height: calc(var(--top-nav-height) *.95);
 }.top-nav ul {
     list-style: none;
 
