@@ -5,7 +5,24 @@ body {
 }
 
 
-
+/*[CSS STRUCTURING
+    
+    POSITION,
+        POSITIONING
+    SIZE,
+        OVERFLOW
+    PADDING/MARGIN, 
+    DISPLAY,
+        DISPLAY DIRECTION
+        DISPLAY ORIENTATION
+    BLOCK STYLE,
+        COLOR
+        BORDER
+        RADIUS
+    TEXT STYLE
+        SIZE
+        COLOR
+]*/
 
 
 
@@ -69,33 +86,7 @@ body {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~ WEBSITE PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /***** WEBPAGE_SETTING *****/
-:root {
-    --web-background: #121317;
-        --text-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
-    /*NAVIGATION_SETTING*/
-    --left-nav-width: 275px;
-    --top-nav-height: 60px;
-        --nav-background: var(--web-background);
-        --nav-border: 1px solid rgb(50, 46, 63);
-
-        --nav-logo-font-color: var(--body-font-color);
-        --nav-font-color: rgb(187, 187, 187);
-        --nav-font-size: large;
-
-        --nav-button-color: none;
-        --nav-button-border: 1px solid white;
-        --nav-button-radius: 15px;
-
-    /*BODY_SETTING*/
-    --body-background: var(--web-background);
-        --body-margin: 40px;
-        --body-font-color: white;
-        
-        --box-background: rgb(32, 39, 41);
-        --box-padding: 40px;
-        --box-radius: 15px;
-}
 
 /*WEBSITE PAGE*/
 .website-container {
@@ -218,7 +209,7 @@ body {
     width: calc(100% - var(--left-nav-width));
         overflow: scroll;
 
-    padding-top: var(--body-margin);
+    
 
     display: flex;
     flex-direction: column;
@@ -228,29 +219,81 @@ body {
 
     color: var(--body-font-color);
     font-family: var(--text-font);
-}   .main-body::-webkit-scrollbar {
+}   .main-body::-webkit-scrollbar { /*Scrollbar Style: Invisible*/
         height: 0;
         width: 0;
 }
 
+/*----- box_traits -----*/
 .box{
+    width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
+    
+    margin-top: var(--body-margin);
+    padding: var(--box-padding);
+
     background-color: var(--box-background);
     border-radius: var(--box-radius);
-    padding: var(--box-padding);
 }
+
+
+
+:root {
+    --web-background: #121317;
+        --text-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    /*NAVIGATION_SETTING*/
+    --left-nav-width: 275px;
+    --top-nav-height: 60px;
+        --nav-background: var(--web-background);
+        --nav-border: 1px solid rgb(50, 46, 63);
+
+        --nav-logo-font-color: var(--body-font-color);
+        --nav-font-color: rgb(187, 187, 187);
+        --nav-font-size: large;
+
+        --nav-button-color: none;
+        --nav-button-border: 1px solid white;
+        --nav-button-radius: 15px;
+
+    /*BODY_SETTING*/
+    --body-background: var(--web-background);
+        --body-margin: 40px;
+        --body-font-color: rgb(255, 255, 255);
+        
+        /*box_SETTING*/
+            --box-background: rgb(32, 39, 41); 
+            --box-padding: 40px;
+            --box-radius: 15px;
+
+        /*project-search_SETTING*/
+            --searchbar-height: 40px;
+            --searchbar-width: 600px;
+            --searchbar-radius: 15px;
+
+            --searchbar-background:rgb(56, 53, 82);
+            --search-text-default-font-color:rgb(201, 195, 195);
+            --search-text-font-color: var(--body-font-color);
+
+            --searchbutton-background:rgb(255, 255, 255);
+            --searchbutton-text-font-color: rgb(163, 163, 163);
+
+            --dropdown-background: rgb(38, 36, 56);
+            --dropdown-hover-background:rgb(182, 182, 182);
+            --dropdown-text-font-color: var(--body-font-color);
+
+        /*walkthrough_SETTING*/
+}
+
+
 
 /*----- project search box -----*/
 #project-search{
-    
-    width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
-    
     display: flex;
         flex-direction: column;
     
         align-items: center;
         text-align: center;
 }
-
 
 /*PAGE TITLE*/
 #page-title {
@@ -268,26 +311,31 @@ body {
     display: none;      
 }
 
-.barrier {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    align-items: center;
+
+.barrier { /*KEEP CONTENTS FROM OVERFLOWING CONTAINER*/
     width: 100%;
-    padding-inline: calc(var(--box-padding));
+        overflow: hidden;
+    
     padding-bottom: 3px;
+    padding-inline: calc(var(--box-padding));
     padding-top: 3px;
+    
+    display: flex;
+        flex-direction: column;
+
+        align-items: center;
 }
 
-/*SEARCH BAR*/
-.input-container {
+/*SEARCH-BAR & DROPDOWN CONTAINER*/
+#form-container {
+    width: var(--searchbar-width);
+    
     display: block;
-    width: 600px;
-
-    border-radius: 15px;
-    background-color: #3a3d2d;
-}   @media screen and (max-width: calc(600px * 1.75 )) {
-        .input-container {
+    
+    background-color: var(--dropdown-background);
+    border-radius: var(--searchbar-radius);
+}   @media screen and (max-width: calc(600px + 80px + 80px + 275px)) { /*(search-bar-width) + (body-margin * 2) + (box-padding * 2) + (left-nav-width)*/
+        #form-container {
             width: 100%;
             min-width: 275px;
         }
@@ -295,81 +343,90 @@ body {
 
 .searchbar {
     position: relative;
-    display: flex;
-    height: 40px;
+    
+    height: var(--searchbar-height);
     width: 100%;
-    align-items: center;
+    
+    display: flex;
+        align-items: center;
 }
-
-
 /*INPUT BOX*/
 .input-box {
     position: absolute;
-    left: 0;
-    padding-left: 15px;
-    padding-right: 100px;
-    border-style: none;
-    background-color: #757d5a;
-    color:white;
+        left: 0;
+
     width: calc(100% - 15px - 100px);
     height: 100%;
-    border-radius:15px;
-    font-size: 16px;
-    font-weight: bolder;
+
+    padding-left: 15px;
+    padding-right: 100px;
+
+    background-color: var(--searchbar-background);
+        border-radius:15px;
+        border-style: none;
+
+    color: var(--search-text-font-color);
+        font-size: 16px;
+        font-weight: bolder;
 }.input-box::placeholder {
-    color:white;
+    color: var(--search-text-default-font-color);
 }
-
-
 /*SUBMIT BUTTON*/
 #search-button {
     position: absolute;
-    right:0;
-    border-radius: 15px;
-    margin-right: 5px;
-    font-size: 16px;
+        right:0;
+
     height: 90%;
-    font-weight: bolder;
-    
+
+    margin-right: 5px;
+
+    background-color: var(--searchbutton-background);
+    border-radius: 15px;
+
+    color: var(--searchbutton-text-font-color);
+        font-size: 16px;
+        font-weight: bolder;
 }#search-button:hover {
     cursor: pointer;
 }
-
 
 /*DROPDOWNS*/
 #dropdown {
     display: none;
 }.result-container {
     margin: 0;
-    list-style-type: "◆";
     padding: 0;
     padding-left: 30px;
+
+    list-style-type: "◆";
+    
     cursor: pointer;
     transition: background-color 0.3s;
 }.result-item {
+    width: calc(100% - 20px);
+
     margin: 0;
-    font-weight: bolder;
     padding: 15px;
     padding-left: 5px;
+
     text-align: left;
-    width: calc(100% - 20px);
+
+    color: var(--dropdown-text-font-color);
+    font-weight: bolder;
 }.result-container:is(:last-child) {
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: var(--searchbar-radius);
+    border-bottom-right-radius: var(--searchbar-radius);
 }.result-container:hover {
-    background-color: #f0f0f06b;
+    background-color: var(--dropdown-hover-background);
 }
 
 
 /*----- walkthrough box -----*/
 #walkthrough {
-
     overflow-wrap: break-word;
-    max-height: 100%;
+    
     display: flex;
-    flex-direction: column;
-    width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
-    margin-top: var(--box-padding)
+        flex-direction: column;
 }
 
 #project-type {
@@ -379,44 +436,47 @@ body {
 
 
 .div-line {
-    display: block;
-    background-color: white;
     height: 2px;
     width: 100%;
-    margin-top: 20px;
+
     margin-bottom: 20px;
+    margin-top: 20px;
+
+    display: block;
+
+    background-color: white;
 }
 
 .step-button {
-    background-color: #55b458;
-    border: none;
-    color: rgb(200, 200, 200);
-    padding: 2% 50px;
-    text-align: left;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: auto;
-    margin-top: 0.25%;
-    margin-bottom: 0.25%;
     width: 50%;
+
+    margin: auto;
+        margin-bottom: 0.25%;
+        margin-top: 0.25%;
+    padding: 2% 50px;
+    
+    display: inline-block;
+        text-align: left;
+        text-decoration: none;
+    
+    background-color: #55b458;
+        border: none;
+    
+    color: rgb(200, 200, 200);
+        font-size: 16px;
+    
     cursor: pointer;
 }
 
 .step-button:hover {
     background-color: #59c25c;
+
     color: white;
 }
 
 
-/*----- empty box -----*/
-.empty-box {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--background-color);
-    width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
-    height: 100px;
-    border-radius:15px;
-    padding: var(--box-padding);
-    margin-top: var(--box-padding)
+/*----- empty box for scrollable page -----*/
+#empty-box {
+    padding-bottom: 0;
+    padding-top: 0;
 }
