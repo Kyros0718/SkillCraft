@@ -1,11 +1,12 @@
 const form = document.getElementById("myForm");
-const dropdown = document.getElementById("dropdown");
 const [questionsubject, skillsubject, projectsubject] = [
   document.getElementById("subject1"),
   document.getElementById("subject2"),
   document.getElementById("subject3")]
 const searchbar = document.getElementsByClassName("input-container");
+const dropdown = document.getElementById("dropdown");
 
+const searchButton = document.getElementById("search-button")
 var inputElement = document.getElementById("InputField");
 var inputText = inputElement.textContent;
 
@@ -73,17 +74,20 @@ function showDropdown(items) {
     
 
     items.forEach(itemText => {
-        const resultItem = document.createElement("div");
+        const resultContainer = document.createElement("ul");
+        const resultItem = document.createElement("li");
+        resultContainer.classList.add("result-container")
         resultItem.classList.add("result-item");
+        resultContainer.appendChild(resultItem)
         resultItem.textContent = itemText;
-        resultItem.addEventListener("click", () => onItemClicked(itemText));
-        dropdown.appendChild(resultItem); // Corrected the variable name here
+        resultContainer.addEventListener("click", () => onItemClicked(itemText));
+        dropdown.appendChild(resultContainer); // Corrected the variable name here
     });
 }
 
 function onItemClicked(selectedItem) {
   if (skillLevelNames.includes(selectedItem)) {
-
+    searchButton.disabled = true;
     fetch('/project_searching', { //Send User's Input Text and Skill Level to the Server
       method: 'POST',
       body: JSON.stringify({input_text: inputElement.value , skill_level: selectedItem }),
@@ -93,9 +97,11 @@ function onItemClicked(selectedItem) {
     })
     .then(response => response.json())
     .then(data => { //BACK_END LIST OF PROJECT DROPDOWN
-        showDropdown(data.project_list)
+      searchButton.disabled = false;  
+      showDropdown(data.project_list) 
     })
     .catch(error => { //FRONT_END LIST OF PROJECT DROPDOWN
+      searchButton.disabled = false;
       console.error("YOU ARE IN FRONT_END DISPLAY ONLY");
       showDropdown(["TEMP_PROJECT 1", "TEMP_PROJECT 2","TEMP_PROJECT 3", "TEMP_PROJECT 4","TEMP_PROJECT 5", "TEMP_PROJECT 6","TEMP_PROJECT 7", "TEMP_PROJECT 8","TEMP_PROJECT 9", "TEMP_PROJECT 10",])
     });

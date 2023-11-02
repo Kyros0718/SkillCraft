@@ -241,7 +241,7 @@ body {
 
 /*----- project search box -----*/
 #project-search{
-    height: 100%;
+    
     width: calc(100% - 2 * var(--body-margin) - 2 * var(--box-padding));
     
     display: flex;
@@ -322,7 +322,7 @@ body {
 
 
 /*SUBMIT BUTTON*/
-.submit-button {
+#search-button {
     position: absolute;
     right:0;
     border-radius: 15px;
@@ -331,7 +331,7 @@ body {
     height: 90%;
     font-weight: bolder;
     
-}.submit-button:hover {
+}#search-button:hover {
     cursor: pointer;
 }
 
@@ -339,23 +339,25 @@ body {
 /*DROPDOWNS*/
 #dropdown {
     display: none;
-
-}#idea-dropdown {
-    display: none;
-}.result-item {
-    font-weight: bolder;
-    text-indent: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+}.result-container {
+    margin: 0;
+    list-style-type: "◆";
+    padding: 0;
+    padding-left: 30px;
     cursor: pointer;
     transition: background-color 0.3s;
+}.result-item {
+    margin: 0;
+    font-weight: bolder;
+    padding: 15px;
+    padding-left: 5px;
     text-align: left;
-    width: 100%;
-}.result-item:is(:last-child) {
+    width: calc(100% - 20px);
+}.result-container:is(:last-child) {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-}.result-item:hover {
-    background-color: #f0f0f0;
+}.result-container:hover {
+    background-color: #f0f0f06b;
 }
 
 
