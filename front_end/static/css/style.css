@@ -280,6 +280,7 @@ body {
     border-radius: var(--box-radius);
 }
 
+
 /*----- project search box -----*/
 #project-search{
     display: flex;

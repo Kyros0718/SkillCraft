@@ -14,7 +14,11 @@ var inputText = inputElement.textContent;
 
 const walkthrough_title = document.getElementById("project-type");
 
-
+const leftNav = document.getElementById("left-nav")
+const topNav = document.getElementById("top-nav")
+const mainBody = document.getElementById("main-body")
+const leftNavWidth = rootStyles.getPropertyValue('--left-nav-width');
+const topNavHeight = rootStyles.getPropertyValue('--top-nav-height')
 
 //RENDER WEB-PAGE AFTER LOADING-PAGE 
 window.addEventListener('load', function () {
@@ -27,7 +31,17 @@ window.addEventListener('load', function () {
   }, 0); // 1000 milliseconds = 1.0 seconds
 });
 
+if (window.innerWidth <= 1000){
+  leftNav.style.display = 'none';
+  topNav.style.width = '100%';
+  topNav.style.left = '0';
+  mainBody.style.left= '0';
+  mainBody.style.width= '100%';
 
+}
+else {
+  leftNav.style.display = 'block';
+}
 //CLASS OF SKILL-LEVELS FOR PROJECTS
 class SkillLevel {
   constructor(Level) {
