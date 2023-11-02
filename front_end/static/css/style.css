@@ -86,7 +86,52 @@ body {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~ WEBSITE PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /***** WEBPAGE_SETTING *****/
+:root {
+    --web-background: #121317;
+        --text-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
+    /*NAVIGATION_SETTING*/
+    --left-nav-width: 275px;
+    --top-nav-height: 60px;
+        --nav-background: var(--web-background);
+        --nav-border: 1px solid rgb(50, 46, 63);
+
+        --nav-logo-font-color: var(--body-font-color);
+        --nav-font-color: rgb(187, 187, 187);
+        --nav-font-size: large;
+
+        --nav-button-color: none;
+        --nav-button-border: 1px solid white;
+        --nav-button-radius: 15px;
+
+    /*BODY_SETTING*/
+    --body-background: var(--web-background);
+        --body-margin: 40px;
+        --body-font-color: rgb(255, 255, 255);
+        
+        /*box_SETTING*/
+            --box-background: rgb(32, 39, 41); 
+            --box-padding: 40px;
+            --box-radius: 15px;
+
+        /*project-search_SETTING*/
+            --searchbar-height: 40px;
+            --searchbar-width: 600px;
+            --searchbar-radius: 15px;
+
+            --searchbar-background:rgb(56, 53, 82);
+            --search-text-default-font-color:rgb(201, 195, 195);
+            --search-text-font-color: var(--body-font-color);
+
+            --searchbutton-background:rgb(255, 255, 255);
+            --searchbutton-text-font-color: rgb(163, 163, 163);
+
+            --dropdown-background: rgb(38, 36, 56);
+            --dropdown-hover-background:rgb(182, 182, 182);
+            --dropdown-text-font-color: var(--body-font-color);
+
+        /*walkthrough_SETTING*/
+}
 
 /*WEBSITE PAGE*/
 .website-container {
@@ -234,57 +279,6 @@ body {
     background-color: var(--box-background);
     border-radius: var(--box-radius);
 }
-
-
-
-:root {
-    --web-background: #121317;
-        --text-font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-    /*NAVIGATION_SETTING*/
-    --left-nav-width: 275px;
-    --top-nav-height: 60px;
-        --nav-background: var(--web-background);
-        --nav-border: 1px solid rgb(50, 46, 63);
-
-        --nav-logo-font-color: var(--body-font-color);
-        --nav-font-color: rgb(187, 187, 187);
-        --nav-font-size: large;
-
-        --nav-button-color: none;
-        --nav-button-border: 1px solid white;
-        --nav-button-radius: 15px;
-
-    /*BODY_SETTING*/
-    --body-background: var(--web-background);
-        --body-margin: 40px;
-        --body-font-color: rgb(255, 255, 255);
-        
-        /*box_SETTING*/
-            --box-background: rgb(32, 39, 41); 
-            --box-padding: 40px;
-            --box-radius: 15px;
-
-        /*project-search_SETTING*/
-            --searchbar-height: 40px;
-            --searchbar-width: 600px;
-            --searchbar-radius: 15px;
-
-            --searchbar-background:rgb(56, 53, 82);
-            --search-text-default-font-color:rgb(201, 195, 195);
-            --search-text-font-color: var(--body-font-color);
-
-            --searchbutton-background:rgb(255, 255, 255);
-            --searchbutton-text-font-color: rgb(163, 163, 163);
-
-            --dropdown-background: rgb(38, 36, 56);
-            --dropdown-hover-background:rgb(182, 182, 182);
-            --dropdown-text-font-color: var(--body-font-color);
-
-        /*walkthrough_SETTING*/
-}
-
-
 
 /*----- project search box -----*/
 #project-search{
