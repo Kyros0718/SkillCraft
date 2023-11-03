@@ -2,7 +2,7 @@
 """
 File for intergration between backend and frontend
 """
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from back_end.routes import bp
 import back_end.backend as backend
 import os
@@ -29,12 +29,14 @@ def generate_walkthroughs() -> str:
     # Parse the JSON payload
     data = json.loads(request.data)
     project = data['project']
+    skill = data['skill']
+    level = data['level']
 
     # Generate project ideas using OpenAI's GPT-3 API
-    ideas = backend.generate_walkthroughs(project)
+    ideas = backend.generate_walkthroughs(project, skill, level)
 
     # Return the project ideas as a JSON response
-    return json.dumps(ideas)
+    return jsonify(ideas)
 
 
 @app.route('/generate_project_ideas', methods=['POST'])
@@ -53,7 +55,7 @@ def generate_project_ideas() -> str:
     ideas = backend.generate_project_ideas(skill, level)
 
     # Return the project ideas as a JSON response
-    return json.dumps(ideas)
+    return jsonify(ideas)
 
 app.static_folder = '../front_end/static' #Help Flask Locate static folder
 app.register_blueprint(bp) #Regester Blueprint to Render html pages
