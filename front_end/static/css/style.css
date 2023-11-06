@@ -422,6 +422,10 @@ body {
 }
 
 
+:root {
+    --step--background:green;
+}
+
 /*----- walkthrough box -----*/
 #walkthrough {
     overflow-wrap: break-word;
@@ -433,6 +437,7 @@ body {
 #project-type {
     font-size: 200%;
     font-weight: bolder;
+    margin-bottom: 10px;
 }
 
 
@@ -440,39 +445,57 @@ body {
     height: 2px;
     width: 100%;
 
-    margin-bottom: 20px;
-    margin-top: 20px;
+
 
     display: block;
 
     background-color: white;
 }
 
-.step-button {
-    width: 50%;
 
-    margin: auto;
-        margin-bottom: 0.25%;
-        margin-top: 0.25%;
-    padding: 2% 50px;
+/*EXPANDING-STEPS*/
+#expanding-steps {
+    display: none;
+}
+.steps {
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+}.step-container {
+    width: calc(100% - 20px);
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    border: 3px solid black;
     
-    display: inline-block;
-        text-align: left;
-        text-decoration: none;
-    
-    background-color: #55b458;
-        border: none;
-    
-    color: rgb(200, 200, 200);
-        font-size: 16px;
+
+    background-color: rgb(0, 0, 0);
+    list-style-type: none;
     
     cursor: pointer;
-}
+    transition: background-color 0.3s;
+}.step-container:is(:first-child) {
+    margin-top: 10px;
+}.step-item {
+    width: calc(100% - 10px);
 
-.step-button:hover {
-    background-color: #59c25c;
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 
-    color: white;
+    background-color: rgb(35, 46, 35);
+
+    text-align: left;
+
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+}.step-expandable {
+    display: flex;
+}.step-expanded .step-expandable {
+    display: block;
+}.step-item:hover {
+    background-color: var(--dropdown-hover-background);
 }
 
 
