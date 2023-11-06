@@ -45,7 +45,7 @@ window.addEventListener('load', function () {
 
       loadingContainer.style.display = 'none';
       content.style.display = 'block';
-  }, 0); // 1000 milliseconds = 1.0 seconds
+  }, 2500); // 1000 milliseconds = 1.0 seconds
 });
 
 
@@ -242,12 +242,17 @@ HTMLDivElement.prototype.showExandableSteps = function (items, backgroundColor) 
       stepContainer.appendChild(stepExpandable);
       stepItem.textContent = itemText;
       steps.appendChild(stepContainer);
-
+      
+      if (this.id.includes('expanding-steps')) { //identifying main steps of projects
+        stepContainer.classList.add("main-steps");
+      };
 
       stepItem.addEventListener("click", function() {
-        this.parentNode.classList.toggle('step-expanded');
+        this.parentNode.classList.toggle('step-expanded'); //EXPAND & COLLAPSE STEPS
+
         if (this.parentElement.classList.contains('step-expanded')) {
           const newBackgroundColor = calcNewBackgroundColor(backgroundColor);
+          console.log(findParentWithClass(stepItem,"main-steps").querySelector('.step-item').textContent)
           if (this.parentElement.parentElement.parentNode.id==="expanding-steps"){
             project_idea_current = itemText
           };
@@ -295,3 +300,16 @@ function calcNewBackgroundColor(currentColor) {
       return currentColor; 
   }
 }
+
+function findParentWithClass(element, targetClass) {
+  if (!element) {
+      return null; // If the element doesn't exist, return null
+  }
+
+  if (element.classList.contains(targetClass)) {
+      return element; // If the current element has the target class, return it
+  }
+
+  // Recursively call the function on the parent element
+  return findParentWithClass(element.parentNode, targetClass);
+} 
