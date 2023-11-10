@@ -25,6 +25,8 @@ var inputText = inputElement.textContent;
 
 
 //WALKTHROUGH CONST & VAR_____
+const walkthrough_topic = document.getElementById("project-topic");
+const walkthrough_level = document.getElementById("project-level");
 const walkthrough_title = document.getElementById("project-type");
 const expandingSteps = document.getElementById("expanding-steps");
 
@@ -45,7 +47,7 @@ window.addEventListener('load', function () {
 
       loadingContainer.style.display = 'none';
       content.style.display = 'block';
-  }, 2500); // 1000 milliseconds = 1.0 seconds
+  }, 0); // 1000 milliseconds = 1.0 seconds
 });
 
 
@@ -183,7 +185,11 @@ function onItemClicked(selectedItem) {
     project_idea_choice = selectedItem;
     
     walkthrough_title.textContent = selectedItem; //CHANGE WALKTHROUGH TITLE TO PROJECT SELECTED
-
+    walkthrough_level.textContent = skill_level_choice;
+    walkthrough_topic.textContent = inputElement.value;
+    walkthrough_title.style.display = "block";
+    walkthrough_level.style.display = "block";
+    walkthrough_topic.style.display = "block";
 
     //CLOSE DROPDOWN DISPLAY 
     searchbar.style.border = "none";
@@ -211,6 +217,8 @@ function onItemClicked(selectedItem) {
     });
   }
 }
+
+
 
 
 
@@ -249,13 +257,11 @@ HTMLDivElement.prototype.showExandableSteps = function (items, backgroundColor) 
 
       stepItem.addEventListener("click", function() {
         this.parentNode.classList.toggle('step-expanded'); //EXPAND & COLLAPSE STEPS
-
+        project_idea_current = findParentWithClass(stepItem,"main-steps").querySelector('.step-item').textContent
+        
         if (this.parentElement.classList.contains('step-expanded')) {
           const newBackgroundColor = calcNewBackgroundColor(backgroundColor);
-          console.log(findParentWithClass(stepItem,"main-steps").querySelector('.step-item').textContent)
-          if (this.parentElement.parentElement.parentNode.id==="expanding-steps"){
-            project_idea_current = itemText
-          };
+          
           fetch('/expanding-instruction', { //Send User's choice in the steps to Server
             method: 'POST',
             body: JSON.stringify({

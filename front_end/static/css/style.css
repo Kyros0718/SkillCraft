@@ -4,6 +4,11 @@ body {
     padding: 0;
 }
 
+/*HTML TOOLS*/
+.justify-right {
+    display: flex;
+        justify-content: flex-end;
+}
 
 /*[CSS STRUCTURING
     
@@ -110,7 +115,7 @@ body {
         --body-font-color: rgb(255, 255, 255);
         
         /*box_SETTING*/
-            --box-background: rgb(32, 39, 41); 
+            --box-background: rgb(152, 206, 180); /*rgb(32, 39, 41)*/ 
             --box-padding: 40px;
             --box-radius: 15px;
 
@@ -122,9 +127,16 @@ body {
             --searchbar-background:rgb(56, 53, 82);
             --search-text-default-font-color:rgb(201, 195, 195);
             --search-text-font-color: var(--body-font-color);
-
+            --box1-heading-text-color:  rgb(152, 206, 180);
+            --box1-heading-text-outline: 1px rgb(255, 255, 255);
+            /*
+            DARK BLUE-PURPLE    rgb(61, 69, 106)
+            SOFT MINT GREEN     rgb(152, 206, 180)
+            WARM CORAL          rgb(255, 140, 105) 
+            SUBTLE GOLD         rgb(227, 193, 111)
+            */
             --searchbutton-background:rgb(255, 255, 255);
-            --searchbutton-text-font-color: rgb(163, 163, 163);
+            --searchbutton-text-font-color: rgb(61,69,106);
 
             --dropdown-background: rgb(38, 36, 56);
             --dropdown-hover-background:rgb(182, 182, 182);
@@ -294,17 +306,19 @@ body {
     
         align-items: center;
         text-align: center;
+        
 }
 
+
 /*PAGE TITLE*/
-#page-title {
-    font-size: 175%;
+#box-gen-title {
+    font-size: 200%;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
-}#page-title h1::first-letter {
-    color:blue;
-}#page-title h1 span {
-    color:blue;
+}#box-gen-title h1{
+    -webkit-text-stroke: var(--box1-heading-text-outline);
+    color: var(--box1-heading-text-color);
 }
+
 
 
 /*SEARCHBAR SUBJECTS*/
@@ -426,6 +440,7 @@ body {
     --step--background:green;
 }
 
+
 /*----- walkthrough box -----*/
 #walkthrough {
     overflow-wrap: break-word;
@@ -433,8 +448,23 @@ body {
     display: flex;
         flex-direction: column;
 }
-
-#project-type {
+#project-topic{
+    display: none;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px 0px;
+    color: rgb(141, 141, 141);
+}
+#project-level{
+    display: none;
+    margin-bottom: 10px;
+    padding: 5px 20px;
+    border: 1px solid rgb(255, 140, 105) ;
+    font-weight: bolder;
+    color: rgb(255, 140, 105);
+    
+}#project-type {
+    display: none;
     font-size: 200%;
     font-weight: bolder;
     margin-bottom: 10px;
@@ -456,8 +486,15 @@ body {
 /*EXPANDING-STEPS*/
 #expanding-steps {
     display: none;
-}
-.steps {
+    animation: openWalkthrough 1s ease forwards;
+}@keyframes openWalkthrough {
+    0% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+}.steps {
     display: flex;
         flex-direction: column;
         align-items: center;
