@@ -24,7 +24,12 @@ var inputElement = document.getElementById("InputField");
 var inputText = inputElement.textContent;
 
 
+//PROJECT-INVENTORY CONST & VAR_____
+const inventoryBox = document.getElementById("project-inventory"); 
+const inventorySlot = document.getElementById("project-slots"); 
+
 //WALKTHROUGH CONST & VAR_____
+const walkthroughBox = document.getElementById("walkthrough"); 
 const walkthrough_topic = document.getElementById("project-topic");
 const walkthrough_level = document.getElementById("project-level");
 const walkthrough_title = document.getElementById("project-type");
@@ -47,7 +52,7 @@ window.addEventListener('load', function () {
 
       loadingContainer.style.display = 'none';
       content.style.display = 'block';
-  }, 2500); // 1000 milliseconds = 1.0 seconds
+  }, 0); // 1000 milliseconds = 1.0 seconds
 });
 
 
@@ -109,11 +114,59 @@ searchbar.addEventListener("submit", function(event) {
   event.preventDefault();
 
   if (inputElement.value.trim() !== '') { //If Input is not Empty, Render Skill Levels
-    showDropdown(skillLevelNames); //Display Dropdowns Of Skill Levels
+    inputElement.addEventListener('input', function() {
+      searchButton.value = "Generate";
 
-    questionsubject.style.display = "none";
-    skillsubject.style.display = "block"; //Change Subject Titles
-    projectsubject.style.display = "none";
+      questionsubject.style.display = "block";
+      skillsubject.style.display = "none";
+      projectsubject.style.display = "none";
+    });
+    if (searchButton.value !== "Reload") { //If Button Says Reload
+      showDropdown(skillLevelNames); //Display Dropdowns Of Skill Levels
+
+      questionsubject.style.display = "none";
+      skillsubject.style.display = "block"; //Change Subject Titles
+      projectsubject.style.display = "none";
+    }
+    else { //If Not a Reload Button
+        inputElement.disabled = true;
+        searchButton.style.background = 'grey';
+        searchButton.disabled = true;
+        searchbar.style.animationDuration = '3s';
+        searchbar.style.borderWidth = "3px"
+        fetch('/project_searching', { //Send User's Input Text and Skill Level to the Server
+          method: 'POST',
+          body: JSON.stringify({input_text: inputElement.value , skill_level: skill_level_choice }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => response.json())
+        .then(data => { //BACK_END LIST OF PROJECT DROPDOWN
+          searchButton.style.background = buttonBackground;
+          searchButton.disabled = false;
+          searchButton.value = "Reload";
+          inputElement.disabled = false;  
+          searchbar.style.animationDuration = '0s';
+          searchbar.style.borderWidth = "1px"
+          
+          showDropdown(data.project_list) 
+        })
+        .catch(error => { //FRONT_END LIST OF PROJECT DROPDOWN
+          searchButton.style.background = buttonBackground;
+          searchButton.disabled = false;
+          searchButton.value = "Reload";
+          inputElement.disabled = false;  
+          searchbar.style.animationDuration = '0s';
+          searchbar.style.borderWidth = "1px"
+          console.error("YOU ARE IN FRONT_END DISPLAY ONLY");
+          showDropdown(["TEMP_PROJECT 1", "TEMP_PROJECT 2","TEMP_PROJECT 3", "TEMP_PROJECT 4"])
+        });
+    
+        dropdown.style.display = "none";
+        skillsubject.style.display = "none";
+        projectsubject.style.display = "block";
+    }
   }
   else { //If Empty, dont Render Anything
     dropdown.style.display = "none";
@@ -155,6 +208,9 @@ function onItemClicked(selectedItem) {
   if (skillLevelNames.includes(selectedItem)) { //ITEM CHOSEN IS A [SKILL-LEVEL]
     searchButton.style.background = 'grey';
     searchButton.disabled = true;
+    inputElement.disabled = true;
+    searchbar.style.animationDuration = '3s';
+    searchbar.style.borderWidth = "3px"
     skill_level_choice = selectedItem;
     fetch('/project_searching', { //Send User's Input Text and Skill Level to the Server
       method: 'POST',
@@ -166,14 +222,23 @@ function onItemClicked(selectedItem) {
     .then(response => response.json())
     .then(data => { //BACK_END LIST OF PROJECT DROPDOWN
       searchButton.style.background = buttonBackground;
-      searchButton.disabled = false;  
+      searchButton.disabled = false;
+      searchButton.value = "Reload";
+      inputElement.disabled = false;
+      searchbar.style.animationDuration = '0s';
+      searchbar.style.borderWidth = "1px"
+      
       showDropdown(data.project_list) 
     })
     .catch(error => { //FRONT_END LIST OF PROJECT DROPDOWN
       searchButton.style.background = buttonBackground;
       searchButton.disabled = false;
+      searchButton.value = "Reload"; 
+      inputElement.disabled = false; 
+      searchbar.style.animationDuration = '0s';
+      searchbar.style.borderWidth = "1px"
       console.error("YOU ARE IN FRONT_END DISPLAY ONLY");
-      showDropdown(["TEMP_PROJECT 1", "TEMP_PROJECT 2","TEMP_PROJECT 3", "TEMP_PROJECT 4","TEMP_PROJECT 5", "TEMP_PROJECT 6","TEMP_PROJECT 7", "TEMP_PROJECT 8","TEMP_PROJECT 9", "TEMP_PROJECT 10",])
+      showDropdown(["TEMP_PROJECT 1", "TEMP_PROJECT 2","TEMP_PROJECT 3", "TEMP_PROJECT 4"])
     });
 
     dropdown.style.display = "none";
@@ -183,44 +248,113 @@ function onItemClicked(selectedItem) {
   }
   else { //ITEM CHOSEN IS A [PROJECT]
     project_idea_choice = selectedItem;
+
+    addTopic(selectedItem)
+  }
+}
+
+//----- PROJECT-INVENTORY____________________
+function addTopic(item) {
+  inventoryBox.style.display = "block";
+  const found = Array.from(inventorySlot.children).some(child => child.id === skill_level_choice+" || "+inputElement.value);
+
+  if (found) {
+    addProject(item);
+  }
+  else {
+    const slotContainer = document.createElement("div");
+    slotContainer.id = skill_level_choice+" || "+inputElement.value;
+    slotContainer.classList.add(skill_level_choice);
+
+    const slotTopic = document.createElement("div");
+    const slotLevel = document.createElement("div");
+    const divLine = document.createElement("div");
     
-    walkthrough_title.textContent = selectedItem; //CHANGE WALKTHROUGH TITLE TO PROJECT SELECTED
-    walkthrough_level.textContent = skill_level_choice;
-    walkthrough_topic.textContent = inputElement.value;
-    walkthrough_title.style.display = "block";
-    walkthrough_level.style.display = "block";
-    walkthrough_topic.style.display = "block";
+    slotTopic.textContent = "Topic: "+inputElement.value;
+    slotLevel.textContent = "Level: "+skill_level_choice;
+    divLine.classList.add("div-line");
+    
+    slotContainer.appendChild(slotTopic);
+    slotContainer.appendChild(slotLevel);
+    slotContainer.appendChild(divLine);
+    
+    slotContainer.style.marginBottom = "50px";
 
-    //CLOSE DROPDOWN DISPLAY 
-    searchbar.style.border = "none";
-
-    dropdown.style.display = "none";
-    projectsubject.style.display = "none";
-    questionsubject.style.display = "block";
-
-    fetch('/walkthrough', { //Send User's Project Idea Choice to Server
-      method: 'POST',
-      body: JSON.stringify({input_text: inputElement.value , skill_level: skill_level_choice, project_idea: selectedItem }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => { //BACK_END LIST OF PROJECT DROPDOWN
-      project_idea_instruction = data.project_idea_steps;
-      expandingSteps.showExandableSteps(data.project_idea_steps,'rgb(0, 0, 0)');
-    })
-    .catch(error => { //FRONT_END LIST OF PROJECT DROPDOWN
-      project_idea_instruction = ["TEMP_STEP 1","TEMP_STEP 2","TEMP_STEP 3","TEMP_STEP 4","TEMP_STEP 5"];
-      console.error("YOU ARE IN FRONT_END DISPLAY ONLY");
-      expandingSteps.showExandableSteps(["TEMP_STEP 1","TEMP_STEP 2","TEMP_STEP 3","TEMP_STEP 4","TEMP_STEP 5"],'rgb(0, 0, 0)');
-    });
+    inventorySlot.appendChild(slotContainer);
+    addProject(item);
   }
 }
 
 
+function addProject(item) {
+  const parentDiv = document.getElementById(skill_level_choice+" || "+inputElement.value)
+  
+  
+  const resultContainer = document.createElement("ul");
+  const resultItem = document.createElement("li");
+  resultContainer.classList.add("result-container")
+  resultItem.classList.add("result-item");
+  resultContainer.appendChild(resultItem)
+  resultItem.textContent = item;
 
+  resultContainer.addEventListener("click", () => onProjectClicked(resultContainer));
+  parentDiv.appendChild(resultContainer);
+}
 
+function onProjectClicked(selectedItem) {
+  expandingSteps.innerHTML = "";
+  expandingSteps.style.display = "none";
+
+  const topDivLine = walkthroughBox.querySelector("div:nth-child(3)");
+  const botDivLine = walkthroughBox.querySelector("div:nth-child(5)");
+  topDivLine.style.animationDuration = "3s";
+  botDivLine.style.animationDuration = "3s";
+  
+  
+
+  
+
+  const ParentDivNode = selectedItem.closest('div');
+  selectedItem = selectedItem.querySelector("li").textContent;
+  const topicValue = ParentDivNode.querySelector("div").textContent.substring(7);
+  const skill_level_value = ParentDivNode.querySelector("div:nth-child(2)").textContent.substring(7);
+  walkthroughBox.style.display = "flex";
+  walkthrough_title.textContent = selectedItem; //CHANGE WALKTHROUGH TITLE TO PROJECT SELECTED
+  walkthrough_level.textContent = skill_level_value;
+  walkthrough_topic.textContent = topicValue;
+  walkthrough_title.style.display = "block";
+  walkthrough_level.style.display = "block";
+  walkthrough_topic.style.display = "block";
+
+  //CLOSE DROPDOWN DISPLAY 
+  searchbar.style.border = "none";
+
+  dropdown.style.display = "none";
+  projectsubject.style.display = "none";
+  
+
+  fetch('/walkthrough', { //Send User's Project Idea Choice to Server
+    method: 'POST',
+    body: JSON.stringify({input_text: topicValue , skill_level: skill_level_value, project_idea: selectedItem }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => { //BACK_END LIST OF PROJECT DROPDOWN
+    project_idea_instruction = data.project_idea_steps;
+    topDivLine.style.animationDuration = "0s";
+    botDivLine.style.animationDuration = "0s";
+    expandingSteps.showExandableSteps(data.project_idea_steps,'rgb(0, 0, 0)');
+  })
+  .catch(error => { //FRONT_END LIST OF PROJECT DROPDOWN
+    project_idea_instruction = ["TEMP_STEP 1","TEMP_STEP 2","TEMP_STEP 3","TEMP_STEP 4","TEMP_STEP 5"];
+    console.error("YOU ARE IN FRONT_END DISPLAY ONLY");
+    topDivLine.style.animationDuration = "0s";
+    botDivLine.style.animationDuration = "0s";
+    expandingSteps.showExandableSteps(["TEMP_STEP 1","TEMP_STEP 2","TEMP_STEP 3","TEMP_STEP 4","TEMP_STEP 5"],'rgb(0, 0, 0)');
+  });
+}
 
 
 //----- WALKTHROUGH____________________

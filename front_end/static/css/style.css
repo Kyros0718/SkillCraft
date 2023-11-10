@@ -312,6 +312,7 @@ body {
 
 /*PAGE TITLE*/
 #box-gen-title {
+    text-align: center;
     font-size: 200%;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }#box-gen-title h1{
@@ -349,16 +350,13 @@ body {
     
     background-color: var(--dropdown-background);
     border-radius: var(--searchbar-radius);
-}   @media screen and (max-width: calc(600px + 80px + 80px + 275px)) { /*(search-bar-width) + (body-margin * 2) + (box-padding * 2) + (left-nav-width)*/
-        #form-container {
-            width: 100%;
-            min-width: 275px;
-        }
-}
-
+    
+    animation: borderColorChange infinite;
+    animation-duration: 0s;
+}   
 .searchbar {
     position: relative;
-    
+
     height: var(--searchbar-height);
     width: 100%;
     
@@ -379,6 +377,7 @@ body {
     background-color: var(--searchbar-background);
         border-radius:15px;
         border-style: none;
+        
 
     color: var(--search-text-font-color);
         font-size: 16px;
@@ -386,6 +385,7 @@ body {
 }.input-box::placeholder {
     color: var(--search-text-default-font-color);
 }
+
 /*SUBMIT BUTTON*/
 #search-button {
     position: absolute;
@@ -409,28 +409,26 @@ body {
 #dropdown {
     display: none;
 }.result-container {
-    margin: 0;
+    margin: 10px;
     padding: 0;
-    padding-left: 30px;
-
-    list-style-type: "◆";
+    width: calc(100% - 20px);
+    border-radius: 15px;
+    background-color: rgb(255, 140, 105);
+    list-style-type: none;
     
     cursor: pointer;
     transition: background-color 0.3s;
 }.result-item {
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
 
     margin: 0;
     padding: 15px;
-    padding-left: 5px;
+    padding-inline: 20px;
 
     text-align: left;
 
     color: var(--dropdown-text-font-color);
     font-weight: bolder;
-}.result-container:is(:last-child) {
-    border-bottom-left-radius: var(--searchbar-radius);
-    border-bottom-right-radius: var(--searchbar-radius);
 }.result-container:hover {
     background-color: var(--dropdown-hover-background);
 }
@@ -440,12 +438,18 @@ body {
     --step--background:green;
 }
 
-
+/*----- project-inventory box -----*/
+#project-inventory {
+    display: none;
+}
+#project-inventory h1{
+    margin-top: 0px;
+}
 /*----- walkthrough box -----*/
 #walkthrough {
     overflow-wrap: break-word;
     
-    display: flex;
+    display: none;
         flex-direction: column;
 }
 #project-topic{
@@ -473,13 +477,16 @@ body {
 
 .div-line {
     height: 2px;
-    width: 100%;
+    width: calc(100% - 2px);
 
 
 
     display: block;
 
     background-color: white;
+    border:1px solid;
+    animation: backgroundColorChange infinite;
+    animation-duration: 0s;
 }
 
 
@@ -487,13 +494,6 @@ body {
 #expanding-steps {
     display: none;
     animation: openWalkthrough 1s ease forwards;
-}@keyframes openWalkthrough {
-    0% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
-    }
-    100% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    }
 }.steps {
     display: flex;
         flex-direction: column;
@@ -540,4 +540,55 @@ body {
 #empty-box {
     padding-bottom: 0;
     padding-top: 0;
+}
+
+
+/*----- Animations -----*/
+@keyframes openWalkthrough {
+    0% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+    }
+    100% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+@media screen and (max-width: calc(600px + 80px + 80px + 275px)) { /*(search-bar-width) + (body-margin * 2) + (box-padding * 2) + (left-nav-width)*/
+    #form-container {
+        width: 100%;
+        min-width: 275px;
+    }
+}
+@keyframes borderColorChange {
+    0% {
+        border-color: rgb(255, 140, 105);
+    }
+    25% {
+        border-color: rgb(255, 255, 255);
+    }
+    50% {
+        border-color: rgb(255, 140, 105);
+    }
+    75% {
+        border-color: rgb(255, 255, 255);
+    }
+    100% {
+        border-color: rgb(255, 140, 105);
+    }
+}
+@keyframes backgroundColorChange {
+    0% {
+        background-color: rgb(255, 140, 105);
+    }
+    25% {
+        background-color: rgb(255, 255, 255);
+    }
+    50% {
+        background-color: rgb(255, 140, 105);
+    }
+    75% {
+        background-color: rgb(255, 255, 255);
+    }
+    100% {
+        background-color: rgb(255, 140, 105);
+    }
 }

@@ -29,7 +29,7 @@ def search_project_process():
 
     input_response = openai.Completion.create( #AI Response to a prompt
         engine="text-davinci-003",
-        prompt = f"Generate 10 project ideas that involve {input_text} at a {skill_level} level",
+        prompt = f"Generate 4 project ideas that involve {input_text} at a {skill_level} level",
         max_tokens=500,
         n=1,
         stop=None,
